@@ -1,6 +1,6 @@
 - name: Deploy Logisticks Backend and Frontend
   hosts: localhost
-  # become: yes  # Ensure privileged access for Docker operations
+  become: yes  # Ensure privileged access for Docker operations
   vars:
     backend_deployment_file: "../k8s/backend.yml"
     frontend_deployment_file: "../k8s/frontend.yml"
@@ -8,7 +8,7 @@
     ansible_python_interpreter: "/usr/bin/python"
   tasks:
     - name: "Installing kubernetes package"
-        ansible.builtin.pip:
+      ansible.builtin.pip:
         name: kubernetes
         extra_args: --break-system-packages
         
@@ -44,30 +44,30 @@
         restart_policy: always
         detach: yes
       
-    - name: pause for 30 seconds and let DB initialize
-      pause:
-        seconds: 30
+    # - name: pause for 30 seconds and let DB initialize
+    #   pause:
+    #     seconds: 30
       
-    - name: Apply MySQL Deployment
-      k8s:
-        state: present
-        namespace: default
-        src: mysql_deployment_file
+    # - name: Apply MySQL Deployment
+    #   k8s:
+    #     state: present
+    #     namespace: default
+    #     src: mysql_deployment_file
       
-    - name: pause for 30 seconds and let DB initialize
-      pause:
-        seconds: 30
+    # - name: pause for 30 seconds and let DB initialize
+    #   pause:
+    #     seconds: 30
 
-    - name: Apply Backend Deployment and Service
-      k8s:
-        state: present
-        namespace: default
-        src: backend_deployment_file
+    # - name: Apply Backend Deployment and Service
+    #   k8s:
+    #     state: present
+    #     namespace: default
+    #     src: backend_deployment_file
 
-    - name: Apply Frontend Deployment and Service
-      k8s:
-        state: present
-        namespace: default
-        src: frontend_deployment_file
+    # - name: Apply Frontend Deployment and Service
+    #   k8s:
+    #     state: present
+    #     namespace: default
+    #     src: frontend_deployment_file
 
   

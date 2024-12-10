@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: backend-service
 spec:
   selector:
     app: backend
@@ -29,5 +29,5 @@ spec:
   - protocol: TCP
     port: 8088
     targetPort: 8088
-    nodePort: 30008
+    nodePort: 31755
   type: LoadBalancer
