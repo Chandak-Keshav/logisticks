@@ -1,11 +1,11 @@
 - name: Deploy Logisticks Backend and Frontend
   hosts: localhost
   become: yes  # Ensure privileged access for Docker operations
-  vars:
-    backend_deployment_file: "../k8s/backend.yml"
-    frontend_deployment_file: "../k8s/frontend.yml"
-    mysql_deployment_file: "../k8s/mysql-deployment.yml"
-    ansible_python_interpreter: "/usr/bin/python"
+  # vars:
+  #   backend_deployment_file: "../k8s/backend.yml"
+  #   frontend_deployment_file: "../k8s/frontend.yml"
+  #   mysql_deployment_file: "../k8s/mysql-deployment.yml"
+  #   ansible_python_interpreter: "/usr/bin/python"
   tasks:
     - name: "Installing kubernetes package"
       ansible.builtin.pip:
